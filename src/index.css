@@ -1,0 +1,235 @@
+@import 'tailwindcss';
+@import '@xyflow/react/dist/style.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens. Module accents are swapped by [data-module] on a wrapper. */
+:root {
+  --bg: #faf9f6;
+  --surface: #ffffff;
+  --surface-2: #f4f2ec;
+  --line: #e7e3d8;
+  --ink: #1c1a17;
+  --ink-2: #4a4640;
+  --ink-3: #6f695f;
+  --brand: #eab308;
+  --brand-soft: #fef6d6;
+  --brand-ink: #8a5a00;
+  --accent: #b45309;
+  --accent-soft: #fdf1e3;
+  --accent-ink: #92400e;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0f0f12;
+  --surface: #17171c;
+  --surface-2: #1e1e25;
+  --line: #2b2b34;
+  --ink: #f4f2ec;
+  --ink-2: #c9c5bb;
+  --ink-3: #9a958a;
+  --brand: #facc15;
+  --brand-soft: #2a2410;
+  --brand-ink: #fcd34d;
+  --accent: #f59e0b;
+  --accent-soft: #2a1f10;
+  --accent-ink: #fbbf24;
+  color-scheme: dark;
+}
+
+[data-module='common'] {
+  --accent: #e11d48;
+  --accent-soft: #fdecef;
+  --accent-ink: #9f1239;
+}
+.dark [data-module='common'],
+.dark[data-module='common'] {
+  --accent: #fb7185;
+  --accent-soft: #2c151b;
+  --accent-ink: #fda4af;
+}
+[data-module='module-a'] {
+  --accent: #0d9488;
+  --accent-soft: #e3f5f2;
+  --accent-ink: #115e59;
+}
+.dark [data-module='module-a'],
+.dark[data-module='module-a'] {
+  --accent: #2dd4bf;
+  --accent-soft: #0f2624;
+  --accent-ink: #5eead4;
+}
+[data-module='module-b'] {
+  --accent: #4f46e5;
+  --accent-soft: #ecebfd;
+  --accent-ink: #3730a3;
+}
+.dark [data-module='module-b'],
+.dark[data-module='module-b'] {
+  --accent: #818cf8;
+  --accent-soft: #1b1a33;
+  --accent-ink: #a5b4fc;
+}
+[data-module='module-c'] {
+  --accent: #0284c7;
+  --accent-soft: #e4f3fb;
+  --accent-ink: #075985;
+}
+.dark [data-module='module-c'],
+.dark[data-module='module-c'] {
+  --accent: #38bdf8;
+  --accent-soft: #0e2230;
+  --accent-ink: #7dd3fc;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-ink: var(--brand-ink);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
+  --font-serif: 'Source Serif 4 Variable', ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand) 40%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Section anchors clear the sticky header. */
+section[id],
+[data-anchor] {
+  scroll-margin-top: 6rem;
+}
+
+/* Text-only study mode: calm reading layout. */
+.mode-text body {
+  font-family: var(--font-serif);
+  font-size: 17.5px;
+  line-height: 1.75;
+}
+.mode-text .card {
+  box-shadow: none !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  border-bottom-color: var(--line) !important;
+  border-radius: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Flashcard flip */
+.flip-scene {
+  perspective: 1400px;
+}
+.flip-card {
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.flip-card.is-flipped {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-card {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* React Flow theming */
+.react-flow {
+  --xy-background-color: transparent;
+  --xy-edge-stroke: var(--line);
+  --xy-controls-button-background-color: var(--surface);
+  --xy-controls-button-background-color-hover: var(--surface-2);
+  --xy-controls-button-color: var(--ink);
+  --xy-controls-button-border-color: var(--line);
+  --xy-attribution-background-color: transparent;
+}
+.react-flow__attribution {
+  font-size: 9px;
+  opacity: 0.6;
+}
+.react-flow__edge-text {
+  fill: var(--ink-2);
+  font-size: 11px;
+}
+.react-flow__edge-textbg {
+  fill: var(--surface);
+}
+
+/* Print: clean, ink-friendly summaries */
+@media print {
+  @page {
+    margin: 14mm 12mm;
+  }
+  html {
+    --bg: #fff;
+    --surface: #fff;
+    --surface-2: #f6f6f6;
+    --line: #ccc;
+    --ink: #000;
+    --ink-2: #222;
+    --ink-3: #444;
+    --brand-ink: #000;
+    --accent-ink: #000;
+    font-size: 11pt;
+  }
+  body {
+    background: #fff !important;
+    color: #000;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-break {
+    break-before: page;
+  }
+  .avoid-break {
+    break-inside: avoid;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
