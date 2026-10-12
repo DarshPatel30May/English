@@ -22,6 +22,14 @@ npm run preview    # serve the production build
 
 The build is fully static (hash routing, relative asset paths), so `dist/` can be hosted on any static host or opened from a sub-folder. No API keys, paid services or databases are needed; fonts are bundled.
 
+## Open it online (GitHub Pages)
+
+The workflow in `.github/workflows/deploy.yml` builds the site and publishes it to GitHub Pages on every push.
+
+1. One-time setup: go to the repository's **Settings → Pages** and set **Source** to **GitHub Actions**.
+2. Re-run the deploy from **Actions → Deploy to GitHub Pages → Run workflow** (or push any commit).
+3. Open **https://darshpatel30may.github.io/English/**
+
 ## Features
 
 - **Module dashboard** with progress for each module.
