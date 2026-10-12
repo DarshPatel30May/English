@@ -7,6 +7,7 @@ import { billyParadoxes, billyScenes } from '../data/common';
 import { poems, poemThemeLabels } from '../data/moduleA';
 import { iflStrands, narrativeFeatures } from '../data/moduleB';
 import { mentorTexts } from '../data/moduleC';
+import { quotesFor } from '../data/quotes';
 import { Breadcrumbs } from '../components/Navigation';
 import { Chip } from '../components/ui';
 
@@ -177,6 +178,12 @@ function PrintModule({ m, first }: { m: ModuleData; first: boolean }) {
           </ul>
         </div>
       </div>
+      <H>Quote bank</H>
+      <Table
+        head={['Quote', 'Source', 'Techniques', 'Use it for']}
+        rows={quotesFor(m.id).map((q) => [<em key="q">“{q.text}”{q.confidence === 'check' ? ' (check your copy)' : ''}</em>, `${q.source}. ${q.where}`, q.techniques.join('; '), q.useFor])}
+      />
+
       <H>Sources</H>
       <ul className="text-[12px] text-ink-3">
         {m.sources.map((s) => (

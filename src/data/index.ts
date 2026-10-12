@@ -3,6 +3,7 @@ import { common, billyCharacters, billyScenes } from './common';
 import { moduleA, poems, poemThemeLabels } from './moduleA';
 import { moduleB, curiousCharacters, narrativeFeatures } from './moduleB';
 import { moduleC, mentorTexts, writingForms } from './moduleC';
+import { quotes } from './quotes';
 
 export const modules: ModuleData[] = [common, moduleA, moduleB, moduleC];
 
@@ -22,6 +23,7 @@ export const sections = [
   { id: 'breakdown', letter: 'F', label: 'Text breakdown' },
   { id: 'map', letter: 'G', label: 'Concept map' },
   { id: 'revision', letter: 'H', label: 'Quick revision' },
+  { id: 'quotes', letter: 'I', label: 'Quote bank' },
 ] as const;
 
 export type SectionId = (typeof sections)[number]['id'];
@@ -146,7 +148,7 @@ export const crossThemes: CrossTheme[] = [
 export interface Flashcard {
   id: string;
   moduleId: ModuleId;
-  category: 'Rubric' | 'Theme' | 'Technique' | 'Terminology' | 'Text' | 'Misconception' | 'Character';
+  category: 'Rubric' | 'Theme' | 'Technique' | 'Terminology' | 'Text' | 'Misconception' | 'Character' | 'Quote';
   front: string;
   back: string;
 }
@@ -196,6 +198,15 @@ function buildFlashcards(): Flashcard[] {
   for (const f of narrativeFeatures) {
     cards.push({ id: `module-b:nf:${f.id}`, moduleId: 'module-b', category: 'Technique', front: `Narrative feature: ${f.name}. What is its effect?`, back: `${f.what}\n\n${f.effect}` });
   }
+  for (const q of quotes) {
+    cards.push({
+      id: `${q.moduleId}:quote:${q.id}`,
+      moduleId: q.moduleId,
+      category: 'Quote',
+      front: `“${q.text}”\n\nWho / where? Technique?`,
+      back: `${q.source} (${q.where})\n\nTechniques: ${q.techniques.join(', ')}\n\n${q.analysis}`,
+    });
+  }
   for (const w of writingForms) {
     cards.push({ id: `module-c:form:${w.id}`, moduleId: 'module-c', category: 'Terminology', front: `What is the purpose of ${w.name.toLowerCase()} writing?`, back: `${w.purpose}\n\nFeatures: ${w.features.join(', ')}` });
   }
@@ -209,7 +220,7 @@ export const flashcards: Flashcard[] = buildFlashcards();
 export interface SearchEntry {
   id: string;
   title: string;
-  type: 'Module' | 'Section' | 'Theme' | 'Technique' | 'Rubric' | 'Term' | 'Poem' | 'Mentor text' | 'Character' | 'Scene' | 'Tool';
+  type: 'Module' | 'Section' | 'Theme' | 'Technique' | 'Rubric' | 'Term' | 'Poem' | 'Mentor text' | 'Character' | 'Scene' | 'Quote' | 'Tool';
   moduleId?: ModuleId;
   snippet: string;
   haystack: string;
@@ -261,7 +272,11 @@ function buildSearchIndex(): SearchEntry[] {
   for (const w of writingForms) {
     add({ id: `wf:${w.id}`, title: `${w.name} writing`, type: 'Term', moduleId: 'module-c', snippet: w.purpose, href: '/module/module-c?s=breakdown', extra: w.features.join(' ') });
   }
+  for (const q of quotes) {
+    add({ id: `quote:${q.id}`, title: `“${q.text.length > 70 ? q.text.slice(0, 70) + '…' : q.text}”`, type: 'Quote', moduleId: q.moduleId, snippet: `${q.source}: ${q.useFor}`, href: `/module/${q.moduleId}?s=quotes`, extra: `${q.text} ${q.techniques.join(' ')} ${q.themes.join(' ')}` });
+  }
   const tools: [string, string, string][] = [
+    ['Quote bank', '/quotes', 'Verified quotes for every module, filterable by theme.'],
     ['Theme explorer', '/themes', 'Select a theme to see texts, examples and techniques across modules.'],
     ['Compare texts', '/compare', 'Compare any two Module A poems or Module C mentor texts.'],
     ['Rubric explorer', '/rubric', 'Explore descriptor phrases and how texts address them.'],

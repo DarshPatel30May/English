@@ -6,6 +6,8 @@ import { crossThemes, getModule, modules } from '../data';
 import { Breadcrumbs } from '../components/Navigation';
 import { ModuleIcon } from '../components/ModuleIcon';
 import { Chip, cx } from '../components/ui';
+import { QuoteCard } from '../components/QuoteBank';
+import { quotes } from '../data/quotes';
 
 export function ThemesPage() {
   const [params, setParams] = useSearchParams();
@@ -100,6 +102,20 @@ export function ThemesPage() {
               })}
             </AnimatePresence>
           </div>
+
+          {(() => {
+            const tq = quotes.filter((q) => q.themes.includes(theme.id as never) && (scope === 'all' || q.moduleId === scope));
+            return tq.length ? (
+              <div className="mt-8">
+                <h3 className="font-display text-xl font-semibold text-ink">Quotes for “{theme.name}” ({tq.length})</h3>
+                <div className="mt-4 grid gap-4 md:grid-cols-2">
+                  {tq.map((q) => (
+                    <QuoteCard key={q.id} q={q} showModule />
+                  ))}
+                </div>
+              </div>
+            ) : null;
+          })()}
 
           <div className="mt-8 rounded-2xl border border-line bg-surface-2/50 p-5">
             <p className="text-sm font-semibold text-ink">Module-specific themes</p>

@@ -6,7 +6,7 @@ import { useProgress } from '../lib/progress';
 import { Breadcrumbs } from '../components/Navigation';
 import { Chip, ProgressBar, cx } from '../components/ui';
 
-const categories: Flashcard['category'][] = ['Rubric', 'Theme', 'Technique', 'Text', 'Character', 'Terminology', 'Misconception'];
+const categories: Flashcard['category'][] = ['Quote', 'Rubric', 'Theme', 'Technique', 'Text', 'Character', 'Terminology', 'Misconception'];
 
 function shuffleArray<T>(arr: T[]): T[] {
   const a = [...arr];

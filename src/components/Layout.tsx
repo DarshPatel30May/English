@@ -20,6 +20,7 @@ import { cx } from './ui';
 import { SearchDialog } from './SearchDialog';
 
 const tools = [
+  { to: '/quotes', label: 'Quote bank' },
   { to: '/themes', label: 'Theme explorer' },
   { to: '/compare', label: 'Compare texts' },
   { to: '/rubric', label: 'Rubric explorer' },

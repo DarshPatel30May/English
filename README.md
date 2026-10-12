@@ -39,6 +39,7 @@ The workflow in `.github/workflows/deploy.yml` builds the site and publishes it 
   - Module A: a page for each of the six poems, plus groupings.
   - Module B: the interactive **Idea + Form + Language → Reader understanding → Literary significance** model, the narrative arc and prime-chapter visual.
   - Module C: a page for each mentor text, a writing-forms comparison, mentor-text strategies and a reflection guide.
+- **Quote bank** (45 checked quotes): section I of every module plus a `/quotes` page, with techniques, analysis, theme filters and copy buttons. Quotes also appear in the flashcards, search, theme explorer and print summaries.
 - **Theme explorer** across all modules; **text comparison** for any two poems (all 15 pairs written) or mentor texts.
 - **Rubric explorer**; **course map**; **flashcards** generated from the guide content (flip, filter, shuffle, track known cards).
 - **Search** (Ctrl/⌘ K or `/`), **revision checklist**, and **print / save-as-PDF** summaries.
@@ -68,6 +69,7 @@ src/
 - **“Popcorn”** is a poem by Carol Chan, published in *Contemporary Asian Australian Poets* (Puncher & Wattmann, 2013), and appears on the NESA Module C list. The guide does not quote it. Check details against your class copy.
 - **Bush’s 9/11 address** could not be confirmed on the NESA Module C prescribed list, so it is labelled as a likely teacher-selected text. Quotations from it come from the official White House archive transcript.
 - Module A uses short image cues rather than quoting the poems; check wording against your copy of *Inside My Mother* before quoting.
+- Quote wording was checked against published transcripts and reliable study sources. Quotes confirmed only by study notes are marked “Check your copy”. No verifiable quotes were found for “Leaves” or “Popcorn”.
 - Module B avoids diagnosing Christopher; the novel never names a condition.
 
 This is an independent study aid, not an official NESA publication.

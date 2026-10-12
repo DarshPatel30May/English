@@ -1,0 +1,642 @@
+import type { ModuleId } from './types';
+
+/** Universal theme tags — ids match the cross-module themes in the Theme explorer. */
+export type QuoteTheme = 'identity' | 'family' | 'belonging' | 'resilience' | 'truth' | 'individuality' | 'loss' | 'expression';
+
+export const quoteThemeLabels: Record<QuoteTheme, string> = {
+  identity: 'Identity',
+  family: 'Family',
+  belonging: 'Belonging & community',
+  resilience: 'Resilience & adversity',
+  truth: 'Truth & honesty',
+  individuality: 'Individuality vs conformity',
+  loss: 'Loss & grief',
+  expression: 'Communication & expression',
+};
+
+export interface Quote {
+  id: string;
+  moduleId: ModuleId;
+  text: string;
+  /** Who says it / which text */
+  source: string;
+  /** Where in the text (scene, chapter, poem) */
+  where: string;
+  techniques: string[];
+  analysis: string;
+  /** Why it is "universal": the kinds of essay questions it can answer */
+  useFor: string;
+  themes: QuoteTheme[];
+  /** 'check' = wording confirmed only by secondary/student sources; check your copy before quoting. */
+  confidence: 'verified' | 'check';
+  note?: string;
+}
+
+export const quotes: Quote[] = [
+  /* ───────────── Common Module: Billy Elliot ───────────── */
+  {
+    id: 'be-lads',
+    moduleId: 'common',
+    text: 'Lads do football… or boxing… or wrestling. Not friggin’ ballet.',
+    source: 'Jackie',
+    where: 'After learning Billy has been taking ballet instead of boxing',
+    techniques: ['Listing (tricolon)', 'Colloquial dialect', 'Contrast'],
+    analysis:
+      'The list of “acceptable” sports sets up a rigid code of working-class masculinity, and the blunt dialect slams the door on ballet. Jackie’s anger reveals fear of what the community will think as much as disapproval.',
+    useFor: 'Individual vs society; masculinity; paradox (Jackie later sacrifices everything for ballet).',
+    themes: ['individuality', 'family', 'belonging'],
+    confidence: 'verified',
+    note: 'Transcriptions vary slightly in punctuation.',
+  },
+  {
+    id: 'be-childhood',
+    moduleId: 'common',
+    text: 'I don’t want a childhood. I want to be a ballet dancer.',
+    source: 'Billy',
+    where: 'To Mrs Wilkinson',
+    techniques: ['Antithesis', 'Short declaratives', 'Characterisation'],
+    analysis:
+      'Billy rejects the ordinary path for one fierce ambition. The blunt, balanced sentences show his determination and hint at how hardship has already cut his childhood short.',
+    useFor: 'Ambition, identity, resilience, personal growth, sacrifice.',
+    themes: ['identity', 'individuality', 'resilience'],
+    confidence: 'verified',
+  },
+  {
+    id: 'be-electricity',
+    moduleId: 'common',
+    text: 'I’m just there. Flyin’ like a bird. Like electricity. Yeah, like electricity.',
+    source: 'Billy',
+    where: 'Royal Ballet School audition, when asked what dancing feels like',
+    techniques: ['Simile', 'Repetition', 'Fragmented dialogue'],
+    analysis:
+      'Billy cannot explain dance in polished language, so he reaches for raw similes. The repetition of “electricity” captures an energy beyond words, and earlier in the answer he says he can “sort of disappear”. Dance is presented as freedom and transcendence.',
+    useFor: 'Self-expression, identity, human emotion, the limits of language: the film’s most universal line.',
+    themes: ['expression', 'identity', 'resilience'],
+    confidence: 'verified',
+  },
+  {
+    id: 'be-letter',
+    moduleId: 'common',
+    text: 'Always be yourself. I love you forever.',
+    source: 'Billy’s mother (her letter)',
+    where: 'Billy shares the letter with Mrs Wilkinson',
+    techniques: ['Imperative', 'Epistolary voice', 'Symbolism (the letter)'],
+    analysis:
+      'The dead mother’s imperative gives Billy permission to be himself when the living adults around him will not. Her letter becomes a symbol of enduring love and of storytelling keeping a voice alive.',
+    useFor: 'Family, grief, identity, love that outlasts loss, the role of storytelling.',
+    themes: ['family', 'loss', 'identity'],
+    confidence: 'verified',
+  },
+  {
+    id: 'be-grandma',
+    moduleId: 'common',
+    text: 'I could have been a professional dancer.',
+    source: 'Grandma',
+    where: 'Repeated at moments throughout the film',
+    techniques: ['Modal verb “could have”', 'Repetition', 'Foil character'],
+    analysis:
+      'Grandma’s unfulfilled dream is a warning of what happens when ambition is denied. Her line links Billy’s passion to the family’s past and adds urgency to his chance.',
+    useFor: 'Regret, intergenerational experience, missed opportunity, collective constraints.',
+    themes: ['family', 'loss', 'individuality'],
+    confidence: 'verified',
+  },
+
+  /* ───────────── Module A: Inside My Mother ───────────── */
+  {
+    id: 'ea-trance-trees',
+    moduleId: 'module-a',
+    text: 'among the river of trees',
+    source: '“Trance”',
+    where: 'Part 2: the old woman finds solace',
+    techniques: ['Metaphor', 'Natural imagery'],
+    analysis:
+      'Trees flowing like a river turn Country into a living, moving presence that holds and comforts the woman. Her identity and grief are inseparable from the land.',
+    useFor: 'Connection to Country, spiritual identity, finding solace through culture.',
+    themes: ['identity', 'belonging', 'loss'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ea-unearth-unison',
+    moduleId: 'module-a',
+    text: '… rattling in unison',
+    source: '“Unearth”',
+    where: 'The boomerang image',
+    techniques: ['Auditory imagery', 'Symbolism (boomerang)', 'Collective imagery'],
+    analysis:
+      'The boomerang, which returns when thrown, rattles “in unison”: a sound of collective, unified ancestral presence. Suppressed culture is gathering force and will return.',
+    useFor: 'Collective identity, cultural survival, resistance, truth-telling.',
+    themes: ['belonging', 'resilience', 'truth'],
+    confidence: 'check',
+    note: 'Some study notes render this as “boomerangs rattling in unison”; check your copy.',
+  },
+  {
+    id: 'ea-unearth-blood',
+    moduleId: 'module-a',
+    text: 'there is blood on the truth',
+    source: '“Unearth”',
+    where: 'Closing line',
+    techniques: ['Metaphor', 'Emphatic final line', 'Confronting imagery'],
+    analysis:
+      'The final line insists that Australia’s history is stained by violence that cannot be buried. Truth itself carries the evidence, positioning the reader to confront it.',
+    useFor: 'Truth-telling, dispossession, challenging dominant histories (the “reveal/challenge” rubric verbs).',
+    themes: ['truth', 'loss', 'belonging'],
+    confidence: 'check',
+  },
+  {
+    id: 'ea-oomb-empty',
+    moduleId: 'module-a',
+    text: 'empty',
+    source: '“Oombulgarri”',
+    where: 'Repeated throughout; read alongside the opening image of tumbleweeds and blue dresses',
+    techniques: ['Repetition', 'Imagery of absence', 'Juxtaposition (dresses vs tumbleweeds)'],
+    analysis:
+      'Repeating “empty” makes absence the subject of the poem. Placing dresses beside the ghost-town cliché of tumbleweeds reminds us real women and children lived here before the community was closed.',
+    useFor: 'Dispossession, displacement, silencing, loss of community and belonging.',
+    themes: ['belonging', 'loss', 'truth'],
+    confidence: 'check',
+    note: 'Quote the repeated word, and check the exact lines of the opening image in your copy.',
+  },
+  {
+    id: 'ea-eyes-terror',
+    moduleId: 'module-a',
+    text: 'The eyes of terror she has thrown away',
+    source: '“Eyes”',
+    where: 'Second stanza',
+    techniques: ['Extended metaphor', 'Inverted syntax', 'Third-person persona'],
+    analysis:
+      'Fear is imagined as a pair of eyes she can discard. The inverted syntax foregrounds “terror” only to show it rejected, marking agency over trauma.',
+    useFor: 'Resilience, self-determination, identity as a choice.',
+    themes: ['resilience', 'identity', 'individuality'],
+    confidence: 'check',
+  },
+  {
+    id: 'ea-eyes-submission',
+    moduleId: 'module-a',
+    text: 'the eyes of submission are blinded now',
+    source: '“Eyes”',
+    where: 'Second stanza',
+    techniques: ['Extended metaphor', 'Paradox (blinded eyes)'],
+    analysis:
+      'Submission is “blinded”, no longer able to shape how she sees. The persona refuses a passive identity imposed by others.',
+    useFor: 'Challenging assumptions about victims, empowerment, inner identity.',
+    themes: ['resilience', 'individuality', 'identity'],
+    confidence: 'check',
+  },
+  {
+    id: 'ea-eyes-rage',
+    moduleId: 'module-a',
+    text: 'the eyes filled with rage',
+    source: '“Eyes”',
+    where: 'Towards the end of the poem',
+    techniques: ['Extended metaphor', 'Tonal shift', 'Emotive language'],
+    analysis:
+      'The persona chooses anger as protection. Rage is reframed as a guardian and survival strategy rather than a weakness.',
+    useFor: 'Emotional resilience, anger as resistance, self-determination.',
+    themes: ['resilience', 'expression', 'identity'],
+    confidence: 'check',
+  },
+  {
+    id: 'ea-key-keyless',
+    moduleId: 'module-a',
+    text: 'keyless door',
+    source: '“Key”',
+    where: 'Near the end: one of only two uses of “key” in the poem',
+    techniques: ['Symbolism', 'Compound adjective', 'Threshold imagery'],
+    analysis:
+      'A door with no key means there is no way in. Some parts of the grandmother’s life, knowledge and possibly trauma are permanently private, and the girl must respect that boundary.',
+    useFor: 'Intergenerational identity, cultural knowledge, limits of understanding.',
+    themes: ['family', 'identity', 'truth'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ea-key-nohole',
+    moduleId: 'module-a',
+    text: 'no key hole',
+    source: '“Key”',
+    where: 'Near the end',
+    techniques: ['Symbolism', 'Negation', 'Delayed title image'],
+    analysis:
+      'Even the possibility of access is removed. The title image arrives late and is defined by absence, so the reader, like the girl, is left outside.',
+    useFor: 'Family distance, withheld knowledge, belonging and exclusion.',
+    themes: ['family', 'belonging', 'loss'],
+    confidence: 'verified',
+  },
+
+  /* ───────────── Module B: The Curious Incident ───────────── */
+  {
+    id: 'ci-confusing',
+    moduleId: 'module-b',
+    text: 'I find people confusing.',
+    source: 'Christopher',
+    where: 'Opening of the chapter explaining why people are hard to read',
+    techniques: ['Short declarative', 'First-person voice', 'Plain diction'],
+    analysis:
+      'A blunt, honest admission that defines Christopher’s perspective. It also flips the usual view: the reader starts to notice how confusing social conventions really are.',
+    useFor: 'Perspective, communication, difference, narrative voice.',
+    themes: ['expression', 'identity', 'belonging'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-words',
+    moduleId: 'module-b',
+    text: 'people do a lot of talking without using any words',
+    source: 'Christopher',
+    where: 'The first of his two reasons for finding people confusing',
+    techniques: ['Paradox', 'Literal language', 'Defamiliarisation'],
+    analysis:
+      'Christopher describes facial expressions and body language as “talking without words”, making the familiar strange. It shows communication as a two-way gap.',
+    useFor: 'Communication and misunderstanding, perspective, form and language.',
+    themes: ['expression', 'belonging'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-lies',
+    moduleId: 'module-b',
+    text: 'I do not tell lies. Mother used to say that this was because I was a good person. But it is not because I am a good person. It is because I can’t tell lies.',
+    source: 'Christopher',
+    where: 'Chapter 37',
+    techniques: ['Repetition', 'Logical correction', 'Dramatic irony'],
+    analysis:
+      'Christopher corrects his mother’s moral explanation with a logical one. The passage sets up the novel’s central irony: the boy who cannot lie is surrounded by adults who do.',
+    useFor: 'Truth and deception, characterisation, narrative voice.',
+    themes: ['truth', 'identity'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-metaphor',
+    moduleId: 'module-b',
+    text: 'I think it should be called a lie because a pig is not like a day and people do not have skeletons in their cupboards.',
+    source: 'Christopher',
+    where: 'His explanation of metaphors',
+    techniques: ['Literal interpretation', 'Humour', 'Metafiction'],
+    analysis:
+      'By reading idioms literally, Christopher exposes how much everyday language depends on hidden meaning. Haddon uses this to make readers rethink language itself.',
+    useFor: 'Language and form, communication, truth, distinctive voice.',
+    themes: ['truth', 'expression'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-primes',
+    moduleId: 'module-b',
+    text: 'Prime numbers are what is left when you have taken all the patterns away. I think prime numbers are like life. They are very logical but you could never work out the rules, even if you spent all your time thinking about them.',
+    source: 'Christopher',
+    where: 'Chapter 19',
+    techniques: ['Simile', 'Paradox', 'Structural motif (prime chapters)'],
+    analysis:
+      'Christopher uses maths to express a philosophical idea: life has order but is never fully predictable. The simile connects directly to the prime-numbered chapters, so form mirrors meaning.',
+    useFor: 'Order vs uncertainty, form and structure, the most universal Module B quote.',
+    themes: ['identity', 'expression', 'truth'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-mysteries',
+    moduleId: 'module-b',
+    text: 'Lots of things are mysteries. But that doesn’t mean there isn’t an answer to them.',
+    source: 'Christopher',
+    where: 'His reflections on mysteries and science',
+    techniques: ['Logical reasoning', 'Short sentences', 'Detective motif'],
+    analysis:
+      'This captures Christopher’s faith in reason and the detective form of the novel. The mysteries he uncovers, however, are emotional as much as logical.',
+    useFor: 'Truth, order, the detective genre, perspective.',
+    themes: ['truth', 'resilience'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-astronaut',
+    moduleId: 'module-b',
+    text: 'I think I would make a very good astronaut.',
+    source: 'Christopher',
+    where: 'Opening of Chapter 83',
+    techniques: ['Hopeful modality', 'Motif (space and stars)', 'Characterisation'],
+    analysis:
+      'The dream of being alone in a small spacecraft reveals his need for order and calm. It also expresses a longing for independence beyond his father’s control.',
+    useFor: 'Independence, aspiration, identity, difference.',
+    themes: ['identity', 'individuality'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-maths-safe',
+    moduleId: 'module-b',
+    text: 'Mr Jeavons said that I liked maths because it was safe.',
+    source: 'Christopher (reporting Mr Jeavons)',
+    where: 'Opening of Chapter 101, after learning of the affair',
+    techniques: ['Reported speech', 'Juxtaposition (maths vs family chaos)'],
+    analysis:
+      'Placed straight after a painful revelation, the line contrasts the safety of maths with the messiness of human relationships. Christopher goes on to dispute it, showing maths is not always straightforward either.',
+    useFor: 'Order vs uncertainty, coping with emotion, structure and placement.',
+    themes: ['truth', 'resilience'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-killed',
+    moduleId: 'module-b',
+    text: 'I killed Wellington, Christopher.',
+    source: 'Ed (Father)',
+    where: 'Chapter 167: Ed’s confession',
+    techniques: ['Climax / reversal', 'Direct address', 'Short declarative'],
+    analysis:
+      'Ed tries to rebuild trust through honesty, but the confession destroys Christopher’s sense of safety. The detective plot is solved, and the family story takes over.',
+    useFor: 'Truth and trust, family conflict, structure (the midpoint turning point).',
+    themes: ['truth', 'family'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-see-everything',
+    moduleId: 'module-b',
+    text: 'I see everything.',
+    source: 'Christopher',
+    where: 'Chapter 181: why new places overwhelm him',
+    techniques: ['Short declarative', 'Hyperbole (to others), literal truth (to him)'],
+    analysis:
+      'Christopher notices every detail, which explains both his gift for observation and why crowded places overwhelm him. It invites readers to see the world through his perception.',
+    useFor: 'Perspective and difference, sensory experience, independence on the journey.',
+    themes: ['identity', 'expression'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-sandy',
+    moduleId: 'module-b',
+    text: 'And I called the dog Sandy.',
+    source: 'Christopher',
+    where: 'Chapter 233: Ed gives him a puppy',
+    techniques: ['Symbolism (the puppy)', 'Circular structure (a dog begins and ends the novel)'],
+    analysis:
+      'A dead dog started the story; a new dog ends it. The puppy symbolises the slow rebuilding of trust between Christopher and his father.',
+    useFor: 'Trust rebuilt, family reconciliation, circular structure.',
+    themes: ['family', 'truth', 'resilience'],
+    confidence: 'verified',
+  },
+  {
+    id: 'ci-anything',
+    moduleId: 'module-b',
+    text: 'And I know I can do this because I went to London on my own, and because I solved the mystery … and I was brave and I wrote a book and that means I can do anything.',
+    source: 'Christopher',
+    where: 'Final lines of the novel (Chapter 233)',
+    techniques: ['Polysyndeton', 'Cumulative list', 'Hopeful ending'],
+    analysis:
+      'The repeated “and” builds a list of achievements measured on Christopher’s own terms. The novel ends with self-belief, redefining courage and growth.',
+    useFor: 'Independence, personal growth, resilience, the novel’s enduring significance.',
+    themes: ['resilience', 'identity', 'individuality'],
+    confidence: 'verified',
+  },
+
+  /* ───────────── Module C: mentor texts ───────────── */
+  {
+    id: 'mc-ped-graveyard',
+    moduleId: 'module-c',
+    text: 'it was not unequal to walking through a graveyard',
+    source: 'Ray Bradbury, “The Pedestrian”',
+    where: 'Leonard Mead walking past the dark houses',
+    techniques: ['Simile', 'Litotes (“not unequal”)', 'Gothic imagery'],
+    analysis:
+      'The understated litotes makes the comparison eerier: the city is a graveyard and the people inside are spiritually dead. It establishes the story’s critique of technology in one image.',
+    useFor: 'Imaginative writing: setting and atmosphere; conformity vs individuality.',
+    themes: ['individuality', 'loss'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-ped-tombs',
+    moduleId: 'module-c',
+    text: 'The tombs, ill-lit by television light, where the people sat like the dead, the gray or multicolored lights touching their faces, but never really touching them.',
+    source: 'Ray Bradbury, “The Pedestrian”',
+    where: 'Description of the houses Mead passes',
+    techniques: ['Metaphor (houses as tombs)', 'Simile', 'Repetition with a twist (“touching … never really touching”)'],
+    analysis:
+      'Screens light people’s faces but never reach them emotionally. The repetition of “touching” turns a visual detail into a statement about human disconnection.',
+    useFor: 'Mentor technique: repetition with a twist; technology and isolation.',
+    themes: ['individuality', 'belonging', 'loss'],
+    confidence: 'verified',
+    note: 'US spelling (“gray”, “multicolored”) as in the original.',
+  },
+  {
+    id: 'mc-ped-noprof',
+    moduleId: 'module-c',
+    text: '‘No profession,’ said the police car, as if talking to itself.',
+    source: 'Ray Bradbury, “The Pedestrian”',
+    where: 'After Mead says he is a writer',
+    techniques: ['Irony', 'Personification (the car)', 'Dialogue'],
+    analysis:
+      'A machine dismisses a writer as having “no profession”, showing a society that no longer values imagination. The irony delivers the critique without stating it.',
+    useFor: 'Irony as a craft tool; dialogue revealing conflict; value of creativity.',
+    themes: ['individuality', 'expression'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-jobs-dots',
+    moduleId: 'module-c',
+    text: 'You can’t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future.',
+    source: 'Steve Jobs, Stanford (2005)',
+    where: 'Story 1: connecting the dots',
+    techniques: ['Extended metaphor', 'Antithesis (forward/backwards)', 'Direct address'],
+    analysis:
+      'A simple, visual metaphor turns his life story into a lesson about trusting uncertainty. The balanced antithesis makes it memorable for a listening audience.',
+    useFor: 'Discursive/reflective writing; resilience; uncertainty and identity.',
+    themes: ['resilience', 'identity'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-jobs-heaviness',
+    moduleId: 'module-c',
+    text: 'The heaviness of being successful was replaced by the lightness of being a beginner again, less sure about everything.',
+    source: 'Steve Jobs, Stanford (2005)',
+    where: 'Story 2: being fired from Apple',
+    techniques: ['Antithesis (heaviness/lightness)', 'Paradox', 'Reflective tone'],
+    analysis:
+      'Jobs reframes a public failure as freedom. The paradox that losing success felt lighter models how reflection can transform adversity.',
+    useFor: 'Failure and growth; reflective voice; paradox.',
+    themes: ['resilience', 'identity'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-jobs-brick',
+    moduleId: 'module-c',
+    text: 'Sometimes life hits you in the head with a brick. Don’t lose faith.',
+    source: 'Steve Jobs, Stanford (2005)',
+    where: 'Story 2: love and loss',
+    techniques: ['Colloquial metaphor', 'Imperative', 'Short sentences'],
+    analysis:
+      'A blunt, humorous metaphor for hardship followed by a short imperative. The plain register makes profound advice feel personal and accessible.',
+    useFor: 'Resilience; register and tone; persuasive imperatives.',
+    themes: ['resilience'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-jobs-dead',
+    moduleId: 'module-c',
+    text: 'Remembering that I’ll be dead soon is the most important tool I’ve ever encountered to help me make the big choices in life.',
+    source: 'Steve Jobs, Stanford (2005)',
+    where: 'Story 3: death',
+    techniques: ['Confronting candour', 'Superlative', 'Anecdotal ethos'],
+    analysis:
+      'Jobs speaks openly about mortality after his cancer diagnosis. His vulnerability gives the advice authority and shifts the speech to its most serious tone.',
+    useFor: 'Mortality and authenticity; ethos through vulnerability; tonal shifts.',
+    themes: ['loss', 'identity', 'truth'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-jobs-time',
+    moduleId: 'module-c',
+    text: 'Your time is limited, so don’t waste it living someone else’s life.',
+    source: 'Steve Jobs, Stanford (2005)',
+    where: 'Story 3: death',
+    techniques: ['Direct address', 'Imperative', 'Aphorism'],
+    analysis:
+      'Second-person address turns reflection into a call to action. The aphorism compresses the speech’s message about authenticity into one line.',
+    useFor: 'Individuality vs conformity; persuasive endings; identity.',
+    themes: ['individuality', 'identity'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-jobs-hungry',
+    moduleId: 'module-c',
+    text: 'Stay Hungry. Stay Foolish.',
+    source: 'Steve Jobs, Stanford (2005), quoting the Whole Earth Catalog',
+    where: 'Closing lines (repeated)',
+    techniques: ['Parallelism', 'Repetition', 'Intertextuality'],
+    analysis:
+      'Two short parallel imperatives, borrowed from the Whole Earth Catalog and repeated, create a memorable ending that urges curiosity and risk-taking.',
+    useFor: 'How to end a speech; intertextuality; individuality.',
+    themes: ['individuality', 'resilience'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-row-impossible',
+    moduleId: 'module-c',
+    text: 'It is impossible to live without failing at something, unless you live so cautiously that you might as well not have lived at all – in which case, you fail by default.',
+    source: 'J. K. Rowling, Harvard (2008)',
+    where: 'Part 1: the benefits of failure',
+    techniques: ['Paradox', 'Wit', 'Logical structure'],
+    analysis:
+      'The witty twist (“fail by default”) shows that avoiding failure is itself failure. Humour makes a serious argument persuasive for a high-achieving audience.',
+    useFor: 'Failure and resilience; discursive wit; persuasive reasoning.',
+    themes: ['resilience', 'individuality'],
+    confidence: 'verified',
+    note: 'Punctuation varies slightly between transcripts.',
+  },
+  {
+    id: 'mc-row-stripping',
+    moduleId: 'module-c',
+    text: 'Failure meant a stripping away of the inessential.',
+    source: 'J. K. Rowling, Harvard (2008)',
+    where: 'Part 1: the benefits of failure',
+    techniques: ['Metaphor', 'Concise declarative'],
+    analysis:
+      'Failure is reframed as clarifying: it removes what doesn’t matter. The compact sentence reflects the idea of paring back.',
+    useFor: 'Resilience; reflective voice; identity formed through adversity.',
+    themes: ['resilience', 'identity'],
+    confidence: 'verified',
+    note: 'In the speech: “Simply because failure meant a stripping away of the inessential.”',
+  },
+  {
+    id: 'mc-row-rockbottom',
+    moduleId: 'module-c',
+    text: 'And so rock bottom became the solid foundation on which I rebuilt my life.',
+    source: 'J. K. Rowling, Harvard (2008)',
+    where: 'Part 1: the benefits of failure',
+    techniques: ['Extended metaphor (building)', 'Paradox', 'Anecdote'],
+    analysis:
+      'The lowest point becomes the foundation. Turning a cliché (“rock bottom”) into a building metaphor gives hope a solid, structural image.',
+    useFor: 'Resilience; transforming a cliché; personal reflection.',
+    themes: ['resilience', 'identity'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-row-empathise',
+    moduleId: 'module-c',
+    text: 'it is the power that enables us to empathise with humans whose experiences we have never shared',
+    source: 'J. K. Rowling, Harvard (2008)',
+    where: 'Part 2: the importance of imagination',
+    techniques: ['Redefinition', 'Elevated diction', 'Moral appeal'],
+    analysis:
+      'Rowling redefines imagination as empathy rather than mere invention. This shift from personal story to moral responsibility is the speech’s turning point.',
+    useFor: 'Empathy and belonging; purpose of storytelling; persuasive turn.',
+    themes: ['belonging', 'expression'],
+    confidence: 'verified',
+    note: '“It” refers to imagination. Some US reprints spell “empathize”.',
+  },
+  {
+    id: 'mc-row-imagine',
+    moduleId: 'module-c',
+    text: 'We do not need magic to transform our world, we carry all the power we need inside ourselves already: we have the power to imagine better.',
+    source: 'J. K. Rowling, Harvard (2008)',
+    where: 'Part 2: imagination and responsibility',
+    techniques: ['Allusion to her own fiction (magic)', 'Inclusive pronouns', 'Climactic structure'],
+    analysis:
+      'The author of Harry Potter rejects magic in favour of human imagination. Inclusive “we” unites the audience in a call to use their power and privilege for good.',
+    useFor: 'Agency and empowerment; inclusive language; persuasive climax.',
+    themes: ['resilience', 'belonging', 'expression'],
+    confidence: 'verified',
+    note: 'The book version (Very Good Lives) uses a semicolon after “world”.',
+  },
+  {
+    id: 'mc-bush-open',
+    moduleId: 'module-c',
+    text: 'Today, our fellow citizens, our way of life, our very freedom came under attack in a series of deliberate and deadly terrorist acts.',
+    source: 'George W. Bush, Address to the Nation (11 Sept 2001)',
+    where: 'Opening sentence',
+    techniques: ['Tricolon', 'Inclusive pronouns (“our”)', 'Alliteration (“deliberate and deadly”)'],
+    analysis:
+      'The tricolon escalates from people to values to “freedom”, framing the attack as an attack on everyone. Alliteration gives the opening gravity.',
+    useFor: 'Persuasive openings; collective identity; crafting a tricolon.',
+    themes: ['belonging', 'loss'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-bush-anger',
+    moduleId: 'module-c',
+    text: 'The pictures of airplanes flying into buildings, fires burning, huge structures collapsing, have filled us with disbelief, terrible sadness, and a quiet, unyielding anger.',
+    source: 'George W. Bush, Address to the Nation (11 Sept 2001)',
+    where: 'Early in the address',
+    techniques: ['Cumulative imagery', 'Asyndeton', 'Emotive tricolon'],
+    analysis:
+      'Vivid images build to a list of emotions ending in “quiet, unyielding anger”, which acknowledges grief while signalling resolve.',
+    useFor: 'Pathos; imagery in non-fiction; collective emotion.',
+    themes: ['loss', 'resilience'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-bush-steel',
+    moduleId: 'module-c',
+    text: 'Terrorist attacks can shake the foundations of our biggest buildings, but they cannot touch the foundation of America. These acts shattered steel, but they cannot dent the steel of American resolve.',
+    source: 'George W. Bush, Address to the Nation (11 Sept 2001)',
+    where: 'Middle of the address',
+    techniques: ['Antithesis', 'Antanaclasis (repeated word, new meaning: “foundation”, “steel”)', 'Metaphor'],
+    analysis:
+      'Each sentence repeats a physical word (“foundation”, “steel”) and shifts it to a moral meaning. Physical destruction becomes proof of unbreakable values.',
+    useFor: 'The best Module C example of antithesis and wordplay; resilience.',
+    themes: ['resilience', 'belonging'],
+    confidence: 'verified',
+    note: 'Some transcripts read “shatter” rather than “shattered”; the official Public Papers text has “shattered”.',
+  },
+  {
+    id: 'mc-bush-beacon',
+    moduleId: 'module-c',
+    text: 'America was targeted for attack because we’re the brightest beacon for freedom and opportunity in the world.',
+    source: 'George W. Bush, Address to the Nation (11 Sept 2001)',
+    where: 'Middle of the address',
+    techniques: ['Light metaphor', 'Superlative', 'Alliteration'],
+    analysis:
+      'The light metaphor frames the nation as a symbol of hope, turning victimhood into a statement of identity.',
+    useFor: 'Persuasive metaphor; national identity; framing.',
+    themes: ['identity', 'belonging'],
+    confidence: 'verified',
+  },
+  {
+    id: 'mc-bush-distinction',
+    moduleId: 'module-c',
+    text: 'We will make no distinction between the terrorists who committed these acts and those who harbor them.',
+    source: 'George W. Bush, Address to the Nation (11 Sept 2001)',
+    where: 'Statement of policy',
+    techniques: ['Modal of certainty (“will”)', 'Inclusive “we”', 'Declarative'],
+    analysis:
+      'A firm, unambiguous policy statement projects authority and warns enemies. It shows how short declaratives create strength in crisis.',
+    useFor: 'Authoritative tone; purpose and audience (domestic and international).',
+    themes: ['truth', 'belonging'],
+    confidence: 'verified',
+    note: 'US spelling “harbor” as in the original.',
+  },
+];
+
+export function quotesFor(moduleId: ModuleId) {
+  return quotes.filter((q) => q.moduleId === moduleId);
+}

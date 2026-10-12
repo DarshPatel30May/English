@@ -1,13 +1,15 @@
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight, Columns2, Compass, Layers3, ListChecks, Network, Printer, Search, SquareStack } from 'lucide-react';
+import { ArrowRight, Columns2, Compass, Layers3, ListChecks, Network, Printer, Quote, Search, SquareStack } from 'lucide-react';
 import { checklistFor, flashcards, modules } from '../data';
+import { quotes } from '../data/quotes';
 import { useProgress } from '../lib/progress';
 import { ModuleCard } from '../components/ModuleParts';
 import { ModeSwitcher } from '../components/Layout';
 import { ProgressBar } from '../components/ui';
 
 const tools = [
+  { to: '/quotes', title: 'Quote bank', desc: `${quotes.length} checked quotes with techniques and analysis, filterable by theme.`, icon: Quote },
   { to: '/themes', title: 'Theme explorer', desc: 'Pick a theme; see texts, examples and techniques across all modules.', icon: Compass },
   { to: '/compare', title: 'Compare texts', desc: 'Any two Module A poems or Module C mentor texts, side by side.', icon: Columns2 },
   { to: '/rubric', title: 'Rubric explorer', desc: 'Every descriptor phrase explained and linked to your texts.', icon: Layers3 },

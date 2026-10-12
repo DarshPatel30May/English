@@ -14,6 +14,7 @@ import { SearchPage } from './pages/SearchPage';
 import { ChecklistPage } from './pages/ChecklistPage';
 import { PrintPage } from './pages/PrintPage';
 import { MapPage } from './pages/MapPage';
+import { QuotesPage } from './pages/QuotesPage';
 import { NotFound } from './pages/NotFound';
 import { ScrollToTop } from './components/ScrollToTop';
 
@@ -36,6 +37,7 @@ export default function App() {
               <Route path="search" element={<SearchPage />} />
               <Route path="checklist" element={<ChecklistPage />} />
               <Route path="map" element={<MapPage />} />
+              <Route path="quotes" element={<QuotesPage />} />
               <Route path="print/:moduleId" element={<PrintPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>

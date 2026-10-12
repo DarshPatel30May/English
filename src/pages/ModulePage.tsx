@@ -17,6 +17,17 @@ import {
   ThemeCard,
 } from '../components/ModuleParts';
 import { ThemeWeb } from '../components/ThemeWeb';
+import { QuoteBank } from '../components/QuoteBank';
+import { quotesFor } from '../data/quotes';
+
+const quoteNotes: Partial<Record<ModuleData['id'], string>> = {
+  common:
+    'Film dialogue transcriptions vary slightly in spelling and punctuation. In film essays, also cite camera, sound and mise-en-scène evidence (see section F).',
+  'module-a':
+    'Eckermann’s poems are short and under copyright, so these are brief fragments. Items marked “Check your copy” were confirmed only by study notes. No verified line from “Leaves” was found, so take one from your own copy.',
+  'module-c':
+    'No quotes from Carol Chan’s “Popcorn” could be verified online. Take them from your class copy.',
+};
 import { ConceptMap } from '../components/ConceptMap';
 import { CommonBreakdown } from '../components/breakdowns/CommonBreakdown';
 import { ModuleABreakdown } from '../components/breakdowns/ModuleABreakdown';
@@ -40,6 +51,7 @@ const subtitles: Record<SectionId, (m: ModuleData) => string> = {
     })[m.id],
   map: () => 'Select a concept to see its relationships to the module, text, themes and techniques.',
   revision: () => 'Everything you need for last-minute revision.',
+  quotes: () => 'Versatile quotes with techniques and analysis. Filter by theme; copy straight into your notes.',
 };
 
 function Section({ m, id, children }: { m: ModuleData; id: SectionId; children: ReactNode }) {
@@ -139,6 +151,9 @@ export function ModulePage() {
             </Section>
             <Section m={m} id="revision">
               <QuickRevision m={m} />
+            </Section>
+            <Section m={m} id="quotes">
+              <QuoteBank quotes={quotesFor(m.id)} note={quoteNotes[m.id]} />
             </Section>
             <section id="sources" className="scroll-mt-28">
               <SourcesList sources={m.sources} />

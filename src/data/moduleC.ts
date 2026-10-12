@@ -201,7 +201,7 @@ export const moduleC: ModuleData = {
     {
       name: 'Intertextuality and allusion',
       definition: 'Referring to other texts.',
-      example: 'Jobs quotes the Whole Earth Catalog; Rowling quotes Plutarch and Seneca; Bush quotes Psalm 23.',
+      example: 'Jobs quotes the Whole Earth Catalog; Rowling quotes Seneca and a line she attributes to Plutarch; Bush quotes Psalm 23.',
       effect: 'Adds authority, depth and emotional resonance.',
       rubricLink: 'Language for purpose.',
     },
@@ -433,7 +433,7 @@ export const mentorTexts: MentorText[] = [
       { name: 'Self-deprecating humour', example: 'She jokes about her nerves and about the occasion at the start.', effect: 'Builds rapport and humility.' },
       { name: 'Anecdote', example: 'Her years of failure; her work at Amnesty International.', effect: 'Gives the speech emotional power and authenticity.' },
       { name: 'Metaphor', example: 'She describes rock bottom as the solid foundation on which she rebuilt her life.', effect: 'Turns failure into something constructive.' },
-      { name: 'Allusion and quotation', example: 'Quotes Plutarch and closes with Seneca.', effect: 'Connects personal experience to timeless wisdom; suits an academic audience.' },
+      { name: 'Allusion and quotation', example: 'Quotes a line she attributes to Plutarch (its true origin is disputed) and closes with Seneca.', effect: 'Connects personal experience to timeless wisdom; suits an academic audience.' },
       { name: 'Two-part structure', example: 'Failure, then imagination, then the link between them.', effect: 'Clear organisation that builds from personal to social responsibility.' },
     ],
     structure: [
