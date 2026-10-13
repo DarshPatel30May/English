@@ -719,3 +719,85 @@ export const poemPairs: PoemPair[] = [
 export function findPair(a: string, b: string): PoemPair | undefined {
   return poemPairs.find((p) => (p.a === a && p.b === b) || (p.a === b && p.b === a));
 }
+
+/* ───────────── "Understand all 6 poems in 5 minutes" ───────────── */
+export interface QuickPoem {
+  id: string;
+  subtitle: string;
+  story: string;
+  meaning: string;
+  remember: string;
+}
+
+export const quickPoems: QuickPoem[] = [
+  {
+    id: 'trance',
+    subtitle: 'Connection to Country',
+    story: 'A woman enters a trance-like state, experiencing nature, cultural memories and grief.',
+    meaning: 'Aboriginal identity is deeply connected to Country, spirituality, traditions and memories.',
+    remember: 'Nature = Culture',
+  },
+  {
+    id: 'unearth',
+    subtitle: 'Uncovering Hidden History',
+    story: 'The poem calls for buried Aboriginal histories and ancestral experiences to be brought to light.',
+    meaning: 'Remembering suppressed histories is essential for truth, cultural identity and resistance to injustice.',
+    remember: 'Digging = Truth',
+  },
+  {
+    id: 'oombulgarri',
+    subtitle: 'Losing a Community',
+    story: 'An Aboriginal community has been displaced, leaving a formerly inhabited settlement abandoned.',
+    meaning: 'Dispossession damages more than homes. It disrupts cultural belonging, community relationships and identity.',
+    remember: 'Empty Town = Cultural Loss',
+  },
+  {
+    id: 'eyes',
+    subtitle: 'Choosing How to Face the World',
+    story: 'A woman considers different eyes, representing different ways of seeing and responding to the world.',
+    meaning: 'Identity is influenced by emotions, difficult experiences and how individuals choose to respond to them.',
+    remember: 'Eyes = Perspectives and Choices',
+  },
+  {
+    id: 'leaves',
+    subtitle: 'Missing a Father',
+    story: 'A speaker reflects on her relationship with her father, represented through imagery of a tree.',
+    meaning: 'Family relationships, ancestry and separation influence personal identity and the desire to belong.',
+    remember: 'Tree = Father',
+  },
+  {
+    id: 'key',
+    subtitle: 'Locked Away Family Knowledge',
+    story: 'A girl is unable to enter her grandmother’s private space and understand what lies beyond the door.',
+    meaning: 'Barriers between generations can make family history and cultural identity difficult to understand.',
+    remember: 'Locked Door = Missing Knowledge',
+  },
+];
+
+export interface QuickPair {
+  label: string;
+  a: { id: string; focus: string };
+  b: { id: string; focus: string };
+  summary: string;
+}
+
+export const quickPairs: QuickPair[] = [
+  {
+    label: 'Country and belonging',
+    a: { id: 'trance', focus: 'Connection to Country' },
+    b: { id: 'oombulgarri', focus: 'Loss of community' },
+    summary: 'Both explore Country and belonging, but one emphasises connection while the other emphasises loss.',
+  },
+  {
+    label: 'Resistance',
+    a: { id: 'unearth', focus: 'Historical resistance' },
+    b: { id: 'eyes', focus: 'Emotional resistance' },
+    summary: 'Both explore resistance, but one confronts historical injustice while the other explores an individual’s response.',
+  },
+  {
+    label: 'Family identity',
+    a: { id: 'leaves', focus: 'Father relationship' },
+    b: { id: 'key', focus: 'Grandmother relationship' },
+    summary: 'Both explore family identity, but they represent different barriers to intergenerational belonging.',
+  },
+];

@@ -24,7 +24,7 @@ const quoteNotes: Partial<Record<ModuleData['id'], string>> = {
   common:
     'Film dialogue transcriptions vary slightly in spelling and punctuation. In film essays, also cite camera, sound and mise-en-scène evidence (see section F).',
   'module-a':
-    'Eckermann’s poems are short and under copyright, so these are brief fragments. Items marked “Check your copy” were confirmed only by study notes. No verified line from “Leaves” was found, so take one from your own copy.',
+    'Eckermann’s poems are short and under copyright, so these are brief fragments. Items marked “Check your copy” were confirmed only by study notes. The “ma-” quotes come from study notes: all “Leaves” lines in particular are unverified, so confirm wording in your own copy.',
   'module-c':
     'No quotes from Carol Chan’s “Popcorn” could be verified online. Take them from your class copy.',
 };

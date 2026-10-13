@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight, Columns2, Feather, Layers } from 'lucide-react';
-import { poemGroups, poems, poemThemeLabels } from '../../data/moduleA';
+import { ArrowRight, Columns2, Feather, Layers, Timer } from 'lucide-react';
+import { poemGroups, poems, poemThemeLabels, quickPairs, quickPoems } from '../../data/moduleA';
 import { useProgress } from '../../lib/progress';
 import { Badge, Card, Long, cx } from '../ui';
 import { SubHeading } from './SubHeading';
@@ -51,10 +51,53 @@ export function PoemGroupings() {
   );
 }
 
+export function FiveMinuteOverview() {
+  const title = (id: string) => poems.find((p) => p.id === id)?.title ?? id;
+  return (
+    <div className="space-y-6">
+      <p className="text-sm text-ink-2">
+        Forget the quotes for now. If you don’t understand what a poem is about, you won’t know which quotes to use in the HSC. For every poem, remember three things: what happens, what it means, and a one-line memory hook.
+      </p>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {quickPoems.map((q, i) => (
+          <Link key={q.id} to={`/module/module-a/poem/${q.id}`} className="group block">
+            <Card className="flex h-full flex-col transition-all group-hover:-translate-y-0.5 group-hover:border-accent/60">
+              <span className="font-display text-3xl font-semibold text-accent/30">{String(i + 1).padStart(2, '0')}</span>
+              <h4 className="font-display text-xl font-semibold text-ink">“{title(q.id)}” — {q.subtitle}</h4>
+              <p className="mt-3 text-sm text-ink-2"><strong className="text-ink">Story:</strong> {q.story}</p>
+              <p className="mt-2 text-sm text-ink-2"><strong className="text-ink">Meaning:</strong> {q.meaning}</p>
+              <p className="mt-3 rounded-lg bg-accent-soft px-3 py-2 text-sm font-semibold text-accent-ink">Remember: {q.remember}</p>
+            </Card>
+          </Link>
+        ))}
+      </div>
+      <div>
+        <p className="font-display text-lg font-semibold text-ink">The easiest way to remember them</p>
+        <p className="text-sm text-ink-2">Don’t memorise six separate summaries. Memorise three pairs.</p>
+        <div className="mt-3 grid gap-4 md:grid-cols-3">
+          {quickPairs.map((pr) => (
+            <Card key={pr.label}>
+              <p className="text-xs font-semibold uppercase tracking-wider text-ink-3">{pr.label}</p>
+              <p className="mt-2 text-sm text-ink"><strong>“{title(pr.a.id)}”</strong> — {pr.a.focus}</p>
+              <p className="mt-1 text-sm text-ink"><strong>“{title(pr.b.id)}”</strong> — {pr.b.focus}</p>
+              <p className="mt-3 text-sm text-ink-2">{pr.summary}</p>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ModuleABreakdown() {
   const { isDone } = useProgress();
   return (
     <div className="space-y-12">
+      <div>
+        <SubHeading icon={Timer} title="Understand all 6 poems in 5 minutes" subtitle="Story, meaning and a memory hook for each poem, then three pairs to remember." />
+        <FiveMinuteOverview />
+      </div>
+
       <div>
         <SubHeading icon={Layers} title="Essential poem groupings" subtitle="Three thematic pairings that structure strong essays." />
         <PoemGroupings />
